@@ -1,0 +1,24 @@
+<% provide :title, t("about") %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield :title %>
+      <%= t :title_about %>
+    </title>
+  </head>
+  <body>
+    <h2>
+      <%= link_to "English", locale:"en" %>
+      <%= link_to "Vietnamese", locale:"vi" %>
+    </h2>
+    <h1><%= t :about %></h1>
+    <p>
+      <%= t :the %> <a href="https://www.railstutorial.org/"><em><%= t :rort %></em></a> <%= t :isa %>
+      <a href="https://www.railstutorial.org/book"><%= t :book %></a> <%= t :and %>
+      <a href="http://screencasts.railstutorial.org/"><%= t :scr %></a>
+        <%= t :todev %>
+      <a href="http://rubyonrails.org/">Ruby on Rails</a>.
+      <%= t :thisis %>
+    </p>
+  </body>
+</html>

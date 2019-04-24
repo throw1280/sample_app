@@ -1,0 +1,21 @@
+<% provide :title, t("home") %>
+<!DOCTYPE html>
+<html>
+  <header>
+    <title><%=yield :title %>
+      <h1><%=t :title_home %></h1>
+    </title>
+  </header>
+  <body>
+    <h2>
+      <%= link_to "English", locale:"en" %>
+      <%= link_to "Vietnamese", locale:"vi" %>
+    </h2>
+    <h1><%=t :home %></h1>
+    <p>
+      <%= t :thisis2 %>
+      <a href="https://www.railstutorial.org/"><%= t :rort %></a>
+      <%= t :samp %>
+    </p>
+  </body>
+</html>
