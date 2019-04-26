@@ -1,0 +1,14 @@
+vi:
+  static_pages:
+    about:
+      title1: "Ứng dụng mẫu với Ruby on Rails"
+      title2: "Về Ruby on Rails"
+    contact:
+      title: "Liên hệ với Ruby on Rails Bài hướng dẫn ở"
+      title2: "Liên hệ"
+    help:
+      title: "Ứng dụng mẫu với Ruby on Rails"
+      title2: "Trợ giúp"
+    home:
+      title: "Ứng dụng mẫu với Ruby on Rails"
+      title2: "Trang chủ"
