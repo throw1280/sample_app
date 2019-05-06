@@ -53,5 +53,12 @@ en:
   title_home: "Ruby on Rails Tutorial Sample App"
   home: "Home"
   rort: "Ruby on Rails Tutorial"
-
-
+  ror: "Ruby on Rails"
+  mic: "Michael Hartl"
+  by: "by"
+  new: "News"
+  login: "Log in"
+  wel: "Welcome to the Sample App"
+  sigup: "Sign up now!"
+  sigup2: "Sign up"
+  thisis3: "This will be a signup page for new users."
