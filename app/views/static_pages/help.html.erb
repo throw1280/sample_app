@@ -1,22 +1,8 @@
 <% provide :title, t("help") %>
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%=yield :title %>
-      <%= t :title_help %>
-    </title>
-  </head>
-  <body>
-    <h2>
-      <%= link_to "English", locale:"en" %>
-      <%= link_to "Vietnamese", locale:"vi" %>
-    </h2>
-    <h1><%= t(:help) %></h1>
-    <p>
-      <%= t :get %>
-      <a href="https://www.railstutorial.org/book"><%= t :hp %></a>
-      <%= t :tot %>
-      <a href="https://www.railstutorial.org/book"><em><%= t :rort %></em> <%= t :book %></a>
-    </p>
-  </body>
-</html>
+<h1><%= t(:help) %></h1>
+<p>
+  <%= t :get %>
+  <a href="https://www.railstutorial.org/book"><%= t :hp %></a>
+  <%= t :tot %>
+  <a href="https://www.railstutorial.org/book"><em><%= t :rort %></em> <%= t :book %></a>
+</p>
