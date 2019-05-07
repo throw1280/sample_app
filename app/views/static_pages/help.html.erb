@@ -2,7 +2,9 @@
 <h1><%= t(:help) %></h1>
 <p>
   <%= t :get %>
-  <a href="https://www.railstutorial.org/book"><%= t :hp %></a>
+  <%= link_to t("hp"),"https://www.railstutorial.org/book" %>
   <%= t :tot %>
-  <a href="https://www.railstutorial.org/book"><em><%= t :rort %></em> <%= t :book %></a>
+  <%= link_to "https://www.railstutorial.org/book" do %>
+    <em><%= t :rort %></em><%=  t :book %>
+  <% end %>
 </p>
