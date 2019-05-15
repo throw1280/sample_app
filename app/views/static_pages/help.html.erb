@@ -1,10 +1,13 @@
 <% provide :title, t("help") %>
-<h1><%= t(:help) %></h1>
-<p>
-  <%= t :get %>
-  <%= link_to t("hp"),"https://www.railstutorial.org/book" %>
-  <%= t :tot %>
-  <%= link_to "https://www.railstutorial.org/book" do %>
-    <em><%= t :rort %></em><%=  t :book %>
-  <% end %>
-</p>
+
+<div class="center jumbotron">
+  <h1><%= t(:help) %></h1>
+  <p>
+    <%= t :get %>
+    <%= link_to t("hp"),"https://www.railstutorial.org/book" %>
+    <%= t :tot %>
+    <%= link_to "https://www.railstutorial.org/book" do %>
+      <em><%= t :rort %></em><%=  t :book %>
+    <% end %>
+  </p>
+</div>
