@@ -62,3 +62,8 @@ en:
   sigup: "Sign up now!"
   sigup2: "Sign up"
   thisis3: "This will be a signup page for new users."
+  name: "Name"
+  email: "Email"
+  password: "Password"
+  confirmation: "Confirmation"
+  xc: "Welcome to the Sample App!"

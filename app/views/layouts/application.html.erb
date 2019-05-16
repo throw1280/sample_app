@@ -15,8 +15,12 @@
       <%= link_to "Vietnamese", locale: "vi" %>
     </h2>
     <div class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
       <%= yield %>
-    <%= render 'layouts/footer' %>
+    <%= render "layouts/footer" %>
+    <%= debug(params) if Rails.env.development? %>
     </div>
   </body>
 </html>
