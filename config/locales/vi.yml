@@ -31,3 +31,8 @@ vi:
   sigup: "Đăng ký ngay!"
   sigup2: "Đăng ký"
   thisis3: "Đây sẽ là trang đăng ký cho người dùng mới."
+  name: "Tên đăng nhập"
+  email: "Email"
+  password: "Mật khẩu"
+  confirmation: "Xác nhận mật khẩu"
+  xc: "Chào mừng bạn đến với Ứng dụng mẫu!"
