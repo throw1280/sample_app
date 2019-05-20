@@ -3,3 +3,4 @@ max_length_email: 250
 min_length_password: 6
 gavatar_size: 8
 link_home: "https://www.railstutorial.org/"
+boolean: 1
