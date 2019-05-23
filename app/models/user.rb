@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :microposts, dependent: :destroy
   attr_accessor :remember_token
   validates :name, presence: true, length:
     {maximum: Settings.max_length_user}
@@ -38,6 +39,10 @@ class User < ApplicationRecord
 
   def forget
     update remember_digest: nil
+  end
+
+  def feed
+    Micropost.post_user.where(user_id: id)
   end
 
   private
