@@ -4,3 +4,5 @@ min_length_password: 6
 gavatar_size: 8
 link_home: "https://www.railstutorial.org/"
 boolean: 1
+user_size: 50
+per_page_size: 5

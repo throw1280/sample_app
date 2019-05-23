@@ -1,4 +1,12 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
+
+  def index
+    @users = User.paginate(per_page: Settings.per_page_size, page: params[:page])
+  end
+
   def show
     return if @user = User.find_by(id: params[:id])
     redirect_to root_path
@@ -19,6 +27,39 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit; end
+
+  def update
+    if @user.update user_params
+      flash[:success] = t("pup")
+      redirect_to @user
+    else
+      render :edit
+    end
+  end
+
+  def logged_in_user
+    return if logged_in?
+    store_location
+    flash[:danger] = t("pli")
+    redirect_to login_url
+  end
+
+  def correct_user
+    @user = User.find_by(params[:id])
+    redirect_to root_url unless current_user? @user
+  end
+
+  def destroy
+    User.find_by(params[:id]).destroy
+    flash[:success] = t("udel")
+    redirect_to users_url
+  end
+
+  def admin_user
+    redirect_to root_url unless current_user.admin?
   end
 
   private
