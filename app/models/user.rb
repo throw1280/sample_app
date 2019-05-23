@@ -8,7 +8,7 @@ class User < ApplicationRecord
       uniqueness: {case_sensitive: false}
   has_secure_password
   validates :password, presence: true, length:
-    {minimum: Settings.min_length_password}
+    {minimum: Settings.min_length_password}, allow_nil: true
 
   class << self
     def digest string
@@ -28,7 +28,7 @@ class User < ApplicationRecord
 
   def remember
     self.remember_token = User.new_token
-    update :remember_digest, User.digest(remember_token)
+    update remember_digest: User.digest(remember_token)
   end
 
   def authenticated? remember_token
