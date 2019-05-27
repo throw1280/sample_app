@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       check_box_remember user
       redirect_back_or user
     else
-      flash.now[:danger] = t("buglogin")
+      flash.now[:danger] = t "buglogin"
       render :new
     end
   end

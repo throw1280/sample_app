@@ -4,12 +4,18 @@ class UsersController < ApplicationController
   before_action :admin_user, only: :destroy
 
   def index
-    @users = User.paginate(per_page: Settings.per_page_size, page: params[:page])
+    @users = User.paginate(per_page: Settings.per_page_size,
+      page: params[:page])
   end
 
   def show
-    return if @user = User.find_by(id: params[:id])
-    redirect_to root_path
+    @user = User.find_by id: params[:id]
+
+    if @user
+      @microposts = @user.microposts.paginate page: params[:page]
+    else
+      redirect_to root_url
+    end
   end
 
   def new
@@ -22,7 +28,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       remember @user
-      flash[:success] = t("xc")
+      flash[:success] = t "wel2"
       redirect_to @user
     else
       render :new
@@ -33,7 +39,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update user_params
-      flash[:success] = t("pup")
+      flash[:success] = t "pup"
       redirect_to @user
     else
       render :edit
@@ -43,7 +49,7 @@ class UsersController < ApplicationController
   def logged_in_user
     return if logged_in?
     store_location
-    flash[:danger] = t("pli")
+    flash[:danger] = t "pli"
     redirect_to login_url
   end
 
@@ -54,7 +60,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find_by(params[:id]).destroy
-    flash[:success] = t("udel")
+    flash[:success] = t "udel"
     redirect_to users_url
   end
 
