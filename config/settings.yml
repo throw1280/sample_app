@@ -6,3 +6,7 @@ link_home: "https://www.railstutorial.org/"
 boolean: 1
 user_size: 50
 per_page_size: 5
+max_length_content: 140
+micropost_user_size: 50
+max_image_size: 5
+current_user_size: 50
