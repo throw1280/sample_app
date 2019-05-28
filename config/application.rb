@@ -40,5 +40,8 @@ module SampleApp
 
     # Set default locale to something other than :en
     I18n.default_locale = :vi
+
+    # Include the authenticity token in remote forms.
+    config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end

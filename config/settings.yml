@@ -10,3 +10,4 @@ max_length_content: 140
 micropost_user_size: 50
 max_image_size: 5
 current_user_size: 50
+follow_size: 30
