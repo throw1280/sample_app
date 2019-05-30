@@ -12,7 +12,8 @@ class UsersController < ApplicationController
     @user = User.find_by id: params[:id]
 
     if @user
-      @microposts = @user.microposts.paginate page: params[:page]
+      @microposts = @user.microposts.post_user.paginate(per_page:
+       Settings.per_page_size, page: params[:page])
     else
       redirect_to root_url
     end
@@ -54,7 +55,7 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    @user = User.find_by(params[:id])
+    @user = User.find_by params[:id]
     redirect_to root_url unless current_user? @user
   end
 
@@ -66,6 +67,22 @@ class UsersController < ApplicationController
 
   def admin_user
     redirect_to root_url unless current_user.admin?
+  end
+
+  def following
+    @title = t "following"
+    @user  = User.find_by id: params[:id]
+    @users = @user.following.paginate(per_page: Settings.per_page_size,
+      page: params[:page])
+    render "show_follow"
+  end
+
+  def followers
+    @title = t "followers"
+    @user  = User.find_by id: params[:id]
+    @users = @user.followers.paginate(per_page: Settings.per_page_size,
+      page: params[:page])
+    render "show_follow"
   end
 
   private
