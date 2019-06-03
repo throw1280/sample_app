@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  attr_accessor :remember_token, :activation_token
+  before_save   :downcase_email
+  before_create :create_activation_digest
   has_many :microposts, dependent: :destroy
   has_many :active_relationships, class_name: Relationship.name,
     foreign_key: :follower_id,
@@ -9,7 +12,6 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-  attr_accessor :remember_token
   validates :name, presence: true, length:
     {maximum: Settings.max_length_user}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -41,9 +43,10 @@ class User < ApplicationRecord
     update remember_digest: User.digest(remember_token)
   end
 
-  def authenticated? remember_token
-    return false if remember_digest.nil?
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  def authenticated? attribute, token
+    digest = send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
   def forget
@@ -54,7 +57,7 @@ class User < ApplicationRecord
     following_ids = Relationship.select(:followed_id)
                                 .where(follower_id: id)
                                 .to_sql
-    Micropost.post_user.where_user(following_ids, self.id)
+    Micropost.post_user.where_user(following_ids, id)
   end
 
   def follow other_user
@@ -69,9 +72,22 @@ class User < ApplicationRecord
     following.include? other_user
   end
 
+  def activate
+     update_columns(activated: true, activated_at: true)
+  end
+
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
+
   private
 
-  def email_downcase
-    email.downcase!
+  def downcase_email
+    self.email = email.downcase
+  end
+
+  def create_activation_digest
+    self.activation_token  = User.new_token
+    self.activation_digest = User.digest(activation_token)
   end
 end
