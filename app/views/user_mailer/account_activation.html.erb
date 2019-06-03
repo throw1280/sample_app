@@ -1,0 +1,10 @@
+<h1><%= t :sample %></h1>
+
+<p><%= t :hi %> <%= @user.name %>,</p>
+
+<p>
+<%= t :welactivation %>
+</p>
+
+<%= link_to t("accountactivation"), edit_account_activation_url(@user.id, @user.activation_token,
+                                                    email: @user.email) %>
