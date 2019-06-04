@@ -87,3 +87,4 @@ vi:
   failure: "Thất bại"
   deletefail: "Xóa thất bại"
   updatefail: "Cập nhật thất bại"
+  forgotpassw: "Quên mật khẩu"

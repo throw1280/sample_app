@@ -1,6 +1,6 @@
-class User < ApplicationRecord
+  class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token
-  before_save   :downcase_email
+  before_save :downcase_email
   before_create :create_activation_digest
   has_many :microposts, dependent: :destroy
   has_many :active_relationships, class_name: Relationship.name,
@@ -73,7 +73,8 @@ class User < ApplicationRecord
   end
 
   def activate
-     update_columns(activated: true, activated_at: true)
+    update_attribute(:activated, true)
+    update_attribute(:activated_at, Time.zone.now)
   end
 
   def send_activation_email
