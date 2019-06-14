@@ -4,19 +4,15 @@ class UsersController < ApplicationController
   before_action :admin_user, only: :destroy
 
   def index
-    @users = User.paginate(per_page: Settings.per_page_size,
-      page: params[:page])
+    @users = User.where(activated: true).paginate(per_page:
+      Settings.per_page_size, page: params[:page])
   end
 
   def show
     @user = User.find_by id: params[:id]
-
-    if @user
-      @microposts = @user.microposts.post_user.paginate(per_page:
-       Settings.per_page_size, page: params[:page])
-    else
-      redirect_to root_url
-    end
+    redirect_to root_url and return unless true
+    @microposts = @user.microposts.paginate(per_page:
+      Settings.per_page_size,page: params[:page])
   end
 
   def new
@@ -27,11 +23,11 @@ class UsersController < ApplicationController
     @user = User.new user_params
 
     if @user.save
-      log_in @user
-      remember @user
-      flash[:success] = t "wel2"
-      redirect_to @user
+      @user.send_activation_email
+      flash[:info] = t "checkmails"
+      redirect_to root_url
     else
+      flash[:danger] = t "failure"
       render :new
     end
   end
@@ -43,6 +39,7 @@ class UsersController < ApplicationController
       flash[:success] = t "pup"
       redirect_to @user
     else
+      flash[:danger] = t "updatefail"
       render :edit
     end
   end

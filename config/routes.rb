@@ -16,6 +16,7 @@ root "static_pages#home"
             get :following, :followers
         end
     end
+    resources :account_activations, only: [:edit]
     resources :microposts, only: [:create, :destroy]
     resources :relationships, only: [:create, :destroy]
     get "sessions/new"
